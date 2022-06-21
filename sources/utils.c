@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 23:13:40 by maolivei          #+#    #+#             */
-/*   Updated: 2022/06/20 20:14:03 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/06/20 20:55:48 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ int	ft_isnumber(const char *str)
 	return (TRUE);
 }
 
-int	ft_is_in_stack(long long number, t_list *stack)
+int	ft_is_in_stack(long long number, t_stack *stack)
 {
 	while (stack)
 	{
-		if ((int) number == *((int *)stack->content))
+		if ((int) number == stack->value)
 			return (TRUE);
 		stack = stack->next;
 	}

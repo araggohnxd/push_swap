@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:34:31 by maolivei          #+#    #+#             */
-/*   Updated: 2022/06/20 20:11:57 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/06/20 21:02:33 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	ft_swap(t_stack_pair *stacks, int operation_id)
 {
-	t_list	*dst;
-	t_list	*src;
-	void	*aux_content;
+	t_stack	*dst;
+	t_stack	*src;
+	int		aux;
 
 	dst = NULL;
 	if (operation_id == SS || operation_id == RR)
@@ -31,16 +31,16 @@ void	ft_swap(t_stack_pair *stacks, int operation_id)
 	if (!dst)
 		return ;
 	src = dst->next;
-	aux_content = dst->content;
-	dst->content = src->content;
-	src->content = aux_content;
+	aux = dst->value;
+	dst->value = src->value;
+	src->value = aux;
 }
 
 void	ft_push(t_stack_pair *stacks, int operation_id)
 {
-	t_list	**dst;
-	t_list	**src;
-	t_list	*pushed_node;
+	t_stack	**dst;
+	t_stack	**src;
+	t_stack	*pushed_node;
 
 	if (operation_id == PA)
 	{
@@ -57,13 +57,13 @@ void	ft_push(t_stack_pair *stacks, int operation_id)
 	pushed_node = *dst;
 	*dst = (*dst)->next;
 	pushed_node->next = NULL;
-	ft_lstadd_front(src, pushed_node);
+	ft_stack_add_start(src, pushed_node);
 }
 
 void	ft_rotate(t_stack_pair *stacks, int operation_id)
 {
-	t_list	**stack;
-	t_list	*old_head;
+	t_stack	**stack;
+	t_stack	*old_head;
 
 	stack = NULL;
 	if (operation_id == RR)
@@ -80,13 +80,13 @@ void	ft_rotate(t_stack_pair *stacks, int operation_id)
 	old_head = *stack;
 	*stack = (*stack)->next;
 	old_head->next = NULL;
-	ft_lstadd_back(stack, old_head);
+	ft_stack_add_end(stack, old_head);
 }
 
 void	ft_reverse_rotate(t_stack_pair *stacks, int operation_id)
 {
-	t_list	**stack;
-	t_list	*old_tail;
+	t_stack	**stack;
+	t_stack	*old_tail;
 	size_t	stack_size;
 
 	stack = NULL;
@@ -101,9 +101,9 @@ void	ft_reverse_rotate(t_stack_pair *stacks, int operation_id)
 		stack = stacks->stack_b;
 	if (!stack || !*stack)
 		return ;
-	stack_size = ft_lstsize(*stack);
-	old_tail = ft_lstlast(*stack);
-	ft_lstadd_front(stack, old_tail);
+	stack_size = ft_stack_size(*stack);
+	old_tail = ft_stack_last(*stack);
+	ft_stack_add_start(stack, old_tail);
 	while (--stack_size)
 		*stack = (*stack)->next;
 	(*stack)->next = NULL;

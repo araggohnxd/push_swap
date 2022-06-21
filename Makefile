@@ -7,7 +7,8 @@ HEADER_FILES		= push_swap.h
 HEADER_PATH			= includes
 HEADER				= ${addprefix ${HEADER_PATH}/, ${HEADER_FILES}}
 
-SRC_FILES			= push_swap.c utils.c operations.c
+SRC_FILES			= push_swap.c utils.c operations.c \
+					linked_list.c linked_list_utils.c
 SRC_PATH			= sources
 SRC					= ${addprefix ${SRC_PATH}/, ${SRC_FILES}}
 

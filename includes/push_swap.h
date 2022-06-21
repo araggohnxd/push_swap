@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 20:55:34 by maolivei          #+#    #+#             */
-/*   Updated: 2022/06/20 20:48:45 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/06/20 20:59:42 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ enum e_operation_id {
 };
 
 typedef struct s_stack {
-	int		value;
-	t_stack	*next;
+	int				value;
+	struct s_stack	*next;
 }	t_stack;
 
 typedef struct s_stack_pair {
-	t_list	**stack_a;
-	t_list	**stack_b;
+	t_stack	**stack_a;
+	t_stack	**stack_b;
 }	t_stack_pair;
 
 /*
@@ -55,12 +55,13 @@ void		ft_reverse_rotate(t_stack_pair *stacks, int operation_id);
 int			*ft_numdup(char *number);
 int			ft_isnumber(const char *str);
 long long	ft_atoll(const char *nptr);
-int			ft_is_in_stack(long long number, t_list *stack);
+int			ft_is_in_stack(long long number, t_stack *stack);
 
 
 /*
 	STACK HANDLING
 */
+t_stack		*ft_stack_new(int value);
 t_stack		*ft_stack_last(t_stack *stack);
 size_t		ft_stack_size(t_stack *stack);
 void		ft_stack_clear(t_stack **stack);

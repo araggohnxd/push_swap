@@ -6,23 +6,23 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 20:53:21 by maolivei          #+#    #+#             */
-/*   Updated: 2022/06/20 20:13:59 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/06/20 21:06:50 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_error_and_exit(t_list *stack)
+void	ft_error_and_exit(t_stack *stack)
 {
 	ft_putendl_fd("Error", STDERR);
 	if (stack)
-		ft_lstclear(&stack, free);
+		ft_stack_clear(&stack);
 	exit(EXIT_FAILURE);
 }
 
-t_list	*ft_init_stack(int argc, char **argv)
+t_stack	*ft_init_stack(int argc, char **argv)
 {
-	t_list		*aux;
+	t_stack		*aux;
 	size_t		index;
 	long long	nbr;
 
@@ -36,24 +36,35 @@ t_list	*ft_init_stack(int argc, char **argv)
 		if (nbr > INT_MAX || nbr < INT_MIN || ft_is_in_stack(nbr, aux))
 			ft_error_and_exit(aux);
 		if (index == 1)
-			aux = ft_lstnew(ft_numdup(argv[index]));
+			aux = ft_stack_new((int) nbr);
 		else
-			ft_lstadd_back(&aux, ft_lstnew(ft_numdup(argv[index])));
+			ft_stack_add_end(&aux, ft_stack_new((int) nbr));
 	}
 	return (aux);
 }
 
 void	ft_clear_stacks(t_stack_pair *stacks)
 {
-	ft_lstclear(stacks->stack_a, free);
-	ft_lstclear(stacks->stack_b, free);
+	ft_stack_clear(stacks->stack_a);
+	ft_stack_clear(stacks->stack_b);
+}
+
+int	ft_is_stack_ordered(t_stack *stack)
+{
+	while (stack->next)
+	{
+		if (stack->value > stack->next->value)
+			return (FALSE);
+		stack = stack->next;
+	}
+	return (TRUE);
 }
 
 int	main(int argc, char **argv)
 {
 	t_stack_pair	stacks;
-	t_list			*stack_a;
-	t_list			*stack_b;
+	t_stack			*stack_a;
+	t_stack			*stack_b;
 
 	if (argc <= 2)
 		exit(EXIT_SUCCESS);
@@ -61,5 +72,10 @@ int	main(int argc, char **argv)
 	stack_b = NULL;
 	stacks.stack_a = &stack_a;
 	stacks.stack_b = &stack_b;
+	if (ft_is_stack_ordered(*(stacks.stack_a)))
+		ft_putendl_fd("IS ORDERED", 1);
+	else
+		ft_putendl_fd("IS NOT ORDERED", 1);
+	ft_clear_stacks(&stacks);
 	return (0);
 }
