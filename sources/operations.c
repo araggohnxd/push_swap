@@ -19,14 +19,14 @@ void	ft_swap(t_stack_pair *stacks, int operation_id)
 	int		aux;
 
 	dst = NULL;
-	if (operation_id == SS || operation_id == RR)
+	if (operation_id == SS)
 	{
 		ft_swap(stacks, SA);
 		ft_swap(stacks, SB);
 	}
-	else if (operation_id == SA || operation_id == RA)
+	else if (operation_id == SA)
 		dst = *(stacks->stack_a);
-	else if (operation_id == SB || operation_id == RB)
+	else if (operation_id == SB)
 		dst = *(stacks->stack_b);
 	if (!dst)
 		return ;
