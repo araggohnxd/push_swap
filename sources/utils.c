@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 23:13:40 by maolivei          #+#    #+#             */
-/*   Updated: 2022/06/20 20:55:48 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/06/20 21:09:54 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,7 @@ long long	ft_atoll(const char *nptr)
 	return (result * is_neg);
 }
 
-int	*ft_numdup(char *number)
-{
-	int		*dup;
-
-	dup = (int *) malloc(sizeof(int));
-	if (!dup)
-		return (NULL);
-	*dup = ft_atoi(number);
-	return (dup);
-}
-
-int	ft_isnumber(const char *str)
+int	ft_is_number_str(const char *str)
 {
 	size_t	index;
 

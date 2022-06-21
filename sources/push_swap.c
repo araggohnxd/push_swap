@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 20:53:21 by maolivei          #+#    #+#             */
-/*   Updated: 2022/06/20 21:06:50 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/06/20 21:09:45 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_stack	*ft_init_stack(int argc, char **argv)
 	index = 0;
 	while (++index < (size_t)argc)
 	{
-		if (!ft_isnumber(argv[index]))
+		if (!ft_is_number_str(argv[index]))
 			ft_error_and_exit(aux);
 		nbr = ft_atoll(argv[index]);
 		if (nbr > INT_MAX || nbr < INT_MIN || ft_is_in_stack(nbr, aux))

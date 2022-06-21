@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 20:55:34 by maolivei          #+#    #+#             */
-/*   Updated: 2022/06/20 20:59:42 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/06/20 21:10:03 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,12 @@ void		ft_reverse_rotate(t_stack_pair *stacks, int operation_id);
 /*
 	UTILS
 */
-int			*ft_numdup(char *number);
-int			ft_isnumber(const char *str);
+int			ft_is_number_str(const char *str);
 long long	ft_atoll(const char *nptr);
 int			ft_is_in_stack(long long number, t_stack *stack);
 
-
 /*
-	STACK HANDLING
+	LINKED LIST
 */
 t_stack		*ft_stack_new(int value);
 t_stack		*ft_stack_last(t_stack *stack);
