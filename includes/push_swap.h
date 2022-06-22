@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 20:55:34 by maolivei          #+#    #+#             */
-/*   Updated: 2022/06/20 21:10:03 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/06/22 15:58:54 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@ typedef struct s_stack_pair {
 }	t_stack_pair;
 
 /*
+	SORTING
+*/
+void		ft_sort_stacks(t_stack_pair *stacks);
+
+/*
 	OPERATIONS
 */
 void		ft_swap(t_stack_pair *stacks, int operation_id);
@@ -52,9 +57,10 @@ void		ft_reverse_rotate(t_stack_pair *stacks, int operation_id);
 /*
 	UTILS
 */
-int			ft_is_number_str(const char *str);
 long long	ft_atoll(const char *nptr);
+int			ft_is_number_str(const char *str);
 int			ft_is_in_stack(long long number, t_stack *stack);
+int			ft_is_stack_ordered(t_stack *stack);
 
 /*
 	LINKED LIST

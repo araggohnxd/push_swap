@@ -6,11 +6,37 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:34:31 by maolivei          #+#    #+#             */
-/*   Updated: 2022/06/20 21:02:33 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/06/22 15:52:06 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void	ft_print_operation(int operation_id)
+{
+	if (operation_id == SA)
+		ft_printf("sa\n");
+	else if (operation_id == SB)
+		ft_printf("sb\n");
+	else if (operation_id == SS)
+		ft_printf("ss\n");
+	else if (operation_id == PA)
+		ft_printf("pa\n");
+	else if (operation_id == PB)
+		ft_printf("pb\n");
+	else if (operation_id == RA)
+		ft_printf("ra\n");
+	else if (operation_id == RB)
+		ft_printf("rb\n");
+	else if (operation_id == RR)
+		ft_printf("rr\n");
+	else if (operation_id == RRA)
+		ft_printf("rra\n");
+	else if (operation_id == RRB)
+		ft_printf("rrb\n");
+	else if (operation_id == RRR)
+		ft_printf("rrr\n");
+}
 
 void	ft_swap(t_stack_pair *stacks, int operation_id)
 {
@@ -34,6 +60,7 @@ void	ft_swap(t_stack_pair *stacks, int operation_id)
 	aux = dst->value;
 	dst->value = src->value;
 	src->value = aux;
+	ft_print_operation(operation_id);
 }
 
 void	ft_push(t_stack_pair *stacks, int operation_id)
@@ -58,6 +85,7 @@ void	ft_push(t_stack_pair *stacks, int operation_id)
 	*dst = (*dst)->next;
 	pushed_node->next = NULL;
 	ft_stack_add_start(src, pushed_node);
+	ft_print_operation(operation_id);
 }
 
 void	ft_rotate(t_stack_pair *stacks, int operation_id)
@@ -81,6 +109,7 @@ void	ft_rotate(t_stack_pair *stacks, int operation_id)
 	*stack = (*stack)->next;
 	old_head->next = NULL;
 	ft_stack_add_end(stack, old_head);
+	ft_print_operation(operation_id);
 }
 
 void	ft_reverse_rotate(t_stack_pair *stacks, int operation_id)
@@ -108,4 +137,5 @@ void	ft_reverse_rotate(t_stack_pair *stacks, int operation_id)
 		*stack = (*stack)->next;
 	(*stack)->next = NULL;
 	*stack = old_tail;
+	ft_print_operation(operation_id);
 }

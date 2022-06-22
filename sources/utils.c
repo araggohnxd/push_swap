@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 23:13:40 by maolivei          #+#    #+#             */
-/*   Updated: 2022/06/20 21:09:54 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/06/22 15:53:00 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,15 @@ int	ft_is_in_stack(long long number, t_stack *stack)
 		stack = stack->next;
 	}
 	return (FALSE);
+}
+
+int	ft_is_stack_ordered(t_stack *stack)
+{
+	while (stack->next)
+	{
+		if (stack->value > stack->next->value)
+			return (FALSE);
+		stack = stack->next;
+	}
+	return (TRUE);
 }

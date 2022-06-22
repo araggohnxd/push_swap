@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 20:53:21 by maolivei          #+#    #+#             */
-/*   Updated: 2022/06/20 21:09:45 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/06/22 15:57:30 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,6 @@ void	ft_clear_stacks(t_stack_pair *stacks)
 	ft_stack_clear(stacks->stack_b);
 }
 
-int	ft_is_stack_ordered(t_stack *stack)
-{
-	while (stack->next)
-	{
-		if (stack->value > stack->next->value)
-			return (FALSE);
-		stack = stack->next;
-	}
-	return (TRUE);
-}
-
 int	main(int argc, char **argv)
 {
 	t_stack_pair	stacks;
@@ -72,10 +61,7 @@ int	main(int argc, char **argv)
 	stack_b = NULL;
 	stacks.stack_a = &stack_a;
 	stacks.stack_b = &stack_b;
-	if (ft_is_stack_ordered(*(stacks.stack_a)))
-		ft_putendl_fd("IS ORDERED", 1);
-	else
-		ft_putendl_fd("IS NOT ORDERED", 1);
+	ft_sort_stacks(&stacks);
 	ft_clear_stacks(&stacks);
 	return (0);
 }
