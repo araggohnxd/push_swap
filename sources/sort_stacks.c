@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 15:57:41 by maolivei          #+#    #+#             */
-/*   Updated: 2022/06/22 19:43:49 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/06/23 17:42:31 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_sort_before_middle(
 	while (--index)
 	{
 		if ((index + 1) == 2
-			&& ft_get_index_value(*(stacks->stack_a), 1) == smallest->value + 1)
+			&& ft_get_index_value(stacks->stack_a, 1) == smallest->value + 1)
 			ft_swap(stacks, SA);
 		else
 			ft_rotate(stacks, RA);
@@ -66,7 +66,7 @@ void	ft_sort_after_middle(
 	while (++index <= size + 1)
 	{
 		if ((index - 1) == 2
-			&& ft_get_index_value(*(stacks->stack_a), 1) == smallest->value + 1)
+			&& ft_get_index_value(stacks->stack_a, 1) == smallest->value + 1)
 			ft_swap(stacks, SA);
 		else
 			ft_reverse_rotate(stacks, RRA);
@@ -79,24 +79,24 @@ void	ft_sort_stacks(t_stack_pair *stacks)
 	size_t	stack_size;
 	size_t	index_smallest;
 
-	// print_stack(*(stacks->stack_a));
-	while (*(stacks->stack_a) && !ft_is_stack_ordered(*(stacks->stack_a)))
+	// print_stack(stacks->stack_a);
+	while (stacks->stack_a && !ft_is_stack_ordered(stacks->stack_a))
 	{
-		stack_size = ft_stack_size(*(stacks->stack_a));
-		smallest = ft_get_smallest(*(stacks->stack_a));
+		stack_size = ft_stack_size(stacks->stack_a);
+		smallest = ft_get_smallest(stacks->stack_a);
 		index_smallest = stack_size - ft_stack_size(smallest) + 1;
 		if (index_smallest > (stack_size / 2) + 1)
 			ft_sort_after_middle(stacks, index_smallest, stack_size, smallest);
 		else
 			ft_sort_before_middle(stacks, index_smallest, smallest);
-		if (!ft_is_stack_ordered(*(stacks->stack_a)))
+		if (!ft_is_stack_ordered(stacks->stack_a))
 			ft_push(stacks, PB);
-		// print_stack(*(stacks->stack_a));
-		// print_stack(*(stacks->stack_b));
+		// print_stack(stacks->stack_a);
+		// print_stack(stacks->stack_b);
 	}
-	while (*(stacks->stack_b))
+	while (stacks->stack_b)
 		ft_push(stacks, PA);
 	// ft_printf("\n\n\n\n\n");
-	// print_stack(*(stacks->stack_a));
-	// print_stack(*(stacks->stack_b));
+	// print_stack(stacks->stack_a);
+	// print_stack(stacks->stack_b);
 }

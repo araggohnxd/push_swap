@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:34:31 by maolivei          #+#    #+#             */
-/*   Updated: 2022/06/22 15:52:06 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/06/23 17:29:43 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ void	ft_swap(t_stack_pair *stacks, int operation_id)
 		ft_swap(stacks, SB);
 	}
 	else if (operation_id == SA)
-		dst = *(stacks->stack_a);
+		dst = stacks->stack_a;
 	else if (operation_id == SB)
-		dst = *(stacks->stack_b);
+		dst = stacks->stack_b;
 	if (!dst)
 		return ;
 	src = dst->next;
@@ -71,13 +71,13 @@ void	ft_push(t_stack_pair *stacks, int operation_id)
 
 	if (operation_id == PA)
 	{
-		dst = stacks->stack_b;
-		src = stacks->stack_a;
+		dst = &stacks->stack_b;
+		src = &stacks->stack_a;
 	}
 	else if (operation_id == PB)
 	{
-		dst = stacks->stack_a;
-		src = stacks->stack_b;
+		dst = &stacks->stack_a;
+		src = &stacks->stack_b;
 	}
 	if (!dst || !*dst)
 		return ;
@@ -100,9 +100,9 @@ void	ft_rotate(t_stack_pair *stacks, int operation_id)
 		ft_rotate(stacks, RB);
 	}
 	else if (operation_id == RA)
-		stack = stacks->stack_a;
+		stack = &stacks->stack_a;
 	else if (operation_id == RB)
-		stack = stacks->stack_b;
+		stack = &stacks->stack_b;
 	if (!stack || !*stack)
 		return ;
 	old_head = *stack;
@@ -125,9 +125,9 @@ void	ft_reverse_rotate(t_stack_pair *stacks, int operation_id)
 		ft_reverse_rotate(stacks, RRB);
 	}
 	else if (operation_id == RRA)
-		stack = stacks->stack_a;
+		stack = &stacks->stack_a;
 	else if (operation_id == RRB)
-		stack = stacks->stack_b;
+		stack = &stacks->stack_b;
 	if (!stack || !*stack)
 		return ;
 	stack_size = ft_stack_size(*stack);
