@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 20:55:34 by maolivei          #+#    #+#             */
-/*   Updated: 2022/06/26 04:10:29 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/06/26 20:32:53 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 #  define INT_MIN -2147483648
 # endif
 # define STDERR 2
-# define OPERATIONS "sa sb ss pa pb ra rb rr rra rrb rrr"
+# define OPERATIONS "skip sa sb ss pa pb ra rb rr rra rrb rrr"
 # include "../libft/libft.h"
 
 enum e_operation_id {
-	SA,
+	SA = TRUE,
 	SB,
 	SS,
 	PA,
@@ -54,7 +54,8 @@ typedef struct s_stack_pair {
 	SORTING
 */
 t_stack	*ft_init_stack(int argc, char **argv);
-void	ft_begin_sorting(t_stack_pair *stacks);
+void	ft_sort_tiny_stack(t_stack_pair *stacks);
+void	ft_sort_large_stack(t_stack_pair *stacks);
 void	ft_split_stack(t_stack_pair *stacks);
 
 /*
@@ -63,6 +64,7 @@ void	ft_split_stack(t_stack_pair *stacks);
 int		ft_get_smallest(t_stack *stack);
 int		ft_get_biggest(t_stack *stack);
 t_stack	*ft_get_index(t_stack *stack, size_t index);
+t_stack	*ft_get_value_index(t_stack *stack, int value);
 
 /*
 	OPERATIONS

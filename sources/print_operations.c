@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 04:10:02 by maolivei          #+#    #+#             */
-/*   Updated: 2022/06/26 04:10:07 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/06/26 19:45:39 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	ft_print_operations(t_stack_pair *stacks)
 	operations = ft_split(OPERATIONS, ' ');
 	while (aux)
 	{
-		ft_printf("%s\n", operations[aux->value]);
+		if (aux->value != 0)
+			ft_printf("%s\n", operations[aux->value]);
 		aux = aux->next;
 	}
 	ft_free_matrix((void *) &operations);
@@ -42,6 +43,13 @@ void	ft_store_operation(t_stack_pair *stacks, int operation_id)
 		else if ((operation_id == RRA && last->value == RRB)
 			|| (operation_id == RRB && last->value == RRA))
 			last->value = RRR;
+		else if ((operation_id == RRA && last->value == RA)
+			|| (operation_id == RRB && last->value == RB)
+			|| (operation_id == RA && last->value == RRA)
+			|| (operation_id == RB && last->value == RRB)
+			|| (operation_id == PB && last->value == PA)
+			|| (operation_id == PA && last->value == PB))
+			last->value = 0;
 		else
 			ft_stack_add_end(&stacks->operations, ft_stack_new(operation_id));
 	}

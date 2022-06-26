@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 15:57:41 by maolivei          #+#    #+#             */
-/*   Updated: 2022/06/26 04:32:53 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/06/26 20:32:45 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ static void	ft_analyze_combinations(
 	ft_put_at_top(stacks, stack_b, 'B');
 }
 
-void	ft_begin_sorting(t_stack_pair *stacks)
+void	ft_sort_large_stack(t_stack_pair *stacks)
 {
 	ft_split_stack(stacks);
 	while (stacks->stack_b)
