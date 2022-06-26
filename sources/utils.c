@@ -6,16 +6,16 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 23:13:40 by maolivei          #+#    #+#             */
-/*   Updated: 2022/06/22 15:53:00 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/06/25 23:30:35 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-long long	ft_atoll(const char *nptr)
+t_llong	ft_atoll(const char *nptr)
 {
-	int			is_neg;
-	long long	result;
+	int		is_neg;
+	t_llong	result;
 
 	while (ft_isspace(*nptr))
 		nptr++;

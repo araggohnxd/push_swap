@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 20:55:34 by maolivei          #+#    #+#             */
-/*   Updated: 2022/06/23 17:28:33 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/06/26 01:55:02 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,11 @@ enum e_operation_id {
 	RRR
 };
 
+typedef long long	t_llong;
+
 typedef struct s_stack {
 	int				value;
+	int				top;
 	struct s_stack	*next;
 }	t_stack;
 
@@ -44,32 +47,41 @@ typedef struct s_stack_pair {
 /*
 	SORTING
 */
-void		ft_sort_stacks(t_stack_pair *stacks);
+t_stack	*ft_init_stack(int argc, char **argv);
+void	ft_begin_sorting(t_stack_pair *stacks);
+void	ft_split_stack(t_stack_pair *stacks);
+
+/*
+	SORTING UTILS
+*/
+int		ft_get_smallest(t_stack *stack);
+int		ft_get_biggest(t_stack *stack);
+t_stack	*ft_get_index(t_stack *stack, size_t index);
 
 /*
 	OPERATIONS
 */
-void		ft_swap(t_stack_pair *stacks, int operation_id);
-void		ft_push(t_stack_pair *stacks, int operation_id);
-void		ft_rotate(t_stack_pair *stacks, int operation_id);
-void		ft_reverse_rotate(t_stack_pair *stacks, int operation_id);
+void	ft_swap(t_stack_pair *stacks, int operation_id);
+void	ft_push(t_stack_pair *stacks, int operation_id);
+void	ft_rotate(t_stack_pair *stacks, int operation_id);
+void	ft_reverse_rotate(t_stack_pair *stacks, int operation_id);
 
 /*
 	UTILS
 */
-long long	ft_atoll(const char *nptr);
-int			ft_is_number_str(const char *str);
-int			ft_is_in_stack(long long number, t_stack *stack);
-int			ft_is_stack_ordered(t_stack *stack);
+t_llong	ft_atoll(const char *nptr);
+int		ft_is_number_str(const char *str);
+int		ft_is_in_stack(long long number, t_stack *stack);
+int		ft_is_stack_ordered(t_stack *stack);
 
 /*
 	LINKED LIST
 */
-t_stack		*ft_stack_new(int value);
-t_stack		*ft_stack_last(t_stack *stack);
-size_t		ft_stack_size(t_stack *stack);
-void		ft_stack_clear(t_stack **stack);
-void		ft_stack_add_end(t_stack **stack, t_stack *new);
-void		ft_stack_add_start(t_stack **stack, t_stack *new);
+t_stack	*ft_stack_new(int value);
+t_stack	*ft_stack_last(t_stack *stack);
+size_t	ft_stack_size(t_stack *stack);
+void	ft_stack_clear(t_stack **stack);
+void	ft_stack_add_end(t_stack **stack, t_stack *new);
+void	ft_stack_add_start(t_stack **stack, t_stack *new);
 
 #endif /* PUSH_SWAP_H */

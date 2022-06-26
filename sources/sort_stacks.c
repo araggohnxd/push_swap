@@ -6,97 +6,107 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 15:57:41 by maolivei          #+#    #+#             */
-/*   Updated: 2022/06/23 17:42:31 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/06/26 01:51:46 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_stack(t_stack *stack)
+static size_t	ft_get_place(t_stack *stack, size_t stack_size, int n)
 {
-	if (!stack)
-		ft_printf("empty stack\n");
-	while (stack)
+	size_t	i;
+
+	i = 0;
+	if (stack->value > n && ft_stack_last(stack)->value < n)
+		return (0);
+	while (!(stack->value < n && stack->next->value > n)
+		&& i < (stack_size - 2))
 	{
-		ft_printf("%d ", stack->value);
 		stack = stack->next;
+		i++;
 	}
-	ft_printf("\n");
+	return (i + 1);
 }
 
-t_stack	*ft_get_smallest(t_stack *stack)
+static size_t	ft_getmoves(t_stack *from, t_stack *to)
 {
-	t_stack	*smallest;
+	size_t	index;
+	size_t	size;
 
-	smallest = stack;
-	while (stack->next)
-	{
-		if (smallest->value > stack->next->value)
-			smallest = stack->next;
-		stack = stack->next;
-	}
-	return (smallest);
+	size = ft_stack_size(from);
+	index = size - ft_stack_size(to) + 1;
+	if (index <= size / 2)
+		return (index - 1);
+	else
+		return (size - index);
 }
 
-int	ft_get_index_value(t_stack *stack, size_t index)
+static void	ft_put_at_top(t_stack_pair *stacks, t_stack **stack, char stack_id)
 {
-	while (--index && stack)
-		stack = stack->next;
-	if (index == 0 && stack)
-		return (stack->value);
-	return (FALSE);
-}
-
-void	ft_sort_before_middle(
-	t_stack_pair *stacks, size_t index, t_stack *smallest)
-{
-	while (--index)
-	{
-		if ((index + 1) == 2
-			&& ft_get_index_value(stacks->stack_a, 1) == smallest->value + 1)
-			ft_swap(stacks, SA);
-		else
-			ft_rotate(stacks, RA);
-	}
-}
-
-void	ft_sort_after_middle(
-	t_stack_pair *stacks, size_t index, size_t size, t_stack *smallest)
-{
-	while (++index <= size + 1)
-	{
-		if ((index - 1) == 2
-			&& ft_get_index_value(stacks->stack_a, 1) == smallest->value + 1)
-			ft_swap(stacks, SA);
-		else
-			ft_reverse_rotate(stacks, RRA);
-	}
-}
-
-void	ft_sort_stacks(t_stack_pair *stacks)
-{
-	t_stack	*smallest;
+	t_stack	*aux;
+	size_t	index;
 	size_t	stack_size;
-	size_t	index_smallest;
+	int		top;
 
-	// print_stack(stacks->stack_a);
-	while (stacks->stack_a && !ft_is_stack_ordered(stacks->stack_a))
+	aux = *stack;
+	top = (*stack)->top;
+	while (aux->value != top)
+		aux = aux->next;
+	stack_size = ft_stack_size(*stack);
+	index = stack_size - ft_stack_size(aux);
+	if (stack_size - index < index && stack_id == 'A')
+		while ((*stack)->value != top)
+			ft_reverse_rotate(stacks, RRA);
+	else if (stack_size - index >= index && stack_id == 'A')
+		while ((*stack)->value != top)
+			ft_rotate(stacks, RA);
+	else if (stack_size - index < index && stack_id == 'B')
+		while ((*stack)->value != top)
+			ft_reverse_rotate(stacks, RRB);
+	else if (stack_size - index >= index && stack_id == 'B')
+		while ((*stack)->value != top)
+			ft_rotate(stacks, RB);
+}
+
+static void	ft_analyze_combinations(
+	t_stack_pair *stacks, t_stack **stack_a, t_stack **stack_b, size_t b_size)
+{
+	t_stack	*b_aux;
+	t_stack	*a_aux;
+	size_t	b_index;
+	size_t	a_index;
+	size_t	moves;
+
+	b_index = 0;
+	moves = ft_stack_size(*stack_a);
+	b_aux = *stack_b;
+	while (b_index++ < b_size)
 	{
-		stack_size = ft_stack_size(stacks->stack_a);
-		smallest = ft_get_smallest(stacks->stack_a);
-		index_smallest = stack_size - ft_stack_size(smallest) + 1;
-		if (index_smallest > (stack_size / 2) + 1)
-			ft_sort_after_middle(stacks, index_smallest, stack_size, smallest);
-		else
-			ft_sort_before_middle(stacks, index_smallest, smallest);
-		if (!ft_is_stack_ordered(stacks->stack_a))
-			ft_push(stacks, PB);
-		// print_stack(stacks->stack_a);
-		// print_stack(stacks->stack_b);
+		a_index = ft_get_place(*stack_a, ft_stack_size(*stack_a), b_aux->value);
+		a_aux = ft_get_index(*stack_a, a_index);
+		if (ft_getmoves(*stack_a, a_aux) + ft_getmoves(*stack_b, b_aux) < moves)
+		{
+			(*stack_a)->top = a_aux->value;
+			(*stack_b)->top = b_aux->value;
+			moves = ft_getmoves(*stack_a, a_aux) + ft_getmoves(*stack_b, b_aux);
+		}
+		b_aux = b_aux->next;
 	}
+	ft_put_at_top(stacks, stack_a, 'A');
+	ft_put_at_top(stacks, stack_b, 'B');
+}
+
+void	ft_begin_sorting(t_stack_pair *stacks)
+{
+	ft_split_stack(stacks);
 	while (stacks->stack_b)
+	{
+		ft_analyze_combinations(stacks,
+			&stacks->stack_a,
+			&stacks->stack_b,
+			ft_stack_size(stacks->stack_b));
 		ft_push(stacks, PA);
-	// ft_printf("\n\n\n\n\n");
-	// print_stack(stacks->stack_a);
-	// print_stack(stacks->stack_b);
+	}
+	stacks->stack_a->top = ft_get_smallest(stacks->stack_a);
+	ft_put_at_top(stacks, &stacks->stack_a, 'A');
 }
