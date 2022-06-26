@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 23:25:40 by maolivei          #+#    #+#             */
-/*   Updated: 2022/06/26 01:50:11 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/06/26 02:15:05 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ static void	ft_last_retrieve(t_stack_pair *stacks)
 	{
 		if (ft_get_biggest(stacks->stack_b) < pivot + 1)
 		{
-			while (ft_stack_last(stacks->stack_b)->value > (b_biggest / 2) - 1)
+			while (ft_stack_last(stacks->stack_b)->value > (b_biggest / 2) - 1
+				&& ft_stack_size(stacks->stack_b) > 1)
 				ft_reverse_rotate(stacks, RRB);
 			break ;
 		}
