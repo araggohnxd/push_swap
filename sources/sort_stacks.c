@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 15:57:41 by maolivei          #+#    #+#             */
-/*   Updated: 2022/06/26 01:51:46 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/06/26 04:32:53 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,18 +54,18 @@ static void	ft_put_at_top(t_stack_pair *stacks, t_stack **stack, char stack_id)
 		aux = aux->next;
 	stack_size = ft_stack_size(*stack);
 	index = stack_size - ft_stack_size(aux);
-	if (stack_size - index < index && stack_id == 'A')
-		while ((*stack)->value != top)
-			ft_reverse_rotate(stacks, RRA);
-	else if (stack_size - index >= index && stack_id == 'A')
+	if (stack_size - index >= index && stack_id == 'A')
 		while ((*stack)->value != top)
 			ft_rotate(stacks, RA);
-	else if (stack_size - index < index && stack_id == 'B')
+	else if (stack_size - index < index && stack_id == 'A')
 		while ((*stack)->value != top)
-			ft_reverse_rotate(stacks, RRB);
+			ft_reverse_rotate(stacks, RRA);
 	else if (stack_size - index >= index && stack_id == 'B')
 		while ((*stack)->value != top)
 			ft_rotate(stacks, RB);
+	else if (stack_size - index < index && stack_id == 'B')
+		while ((*stack)->value != top)
+			ft_reverse_rotate(stacks, RRB);
 }
 
 static void	ft_analyze_combinations(

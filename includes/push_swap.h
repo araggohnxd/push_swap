@@ -6,15 +6,20 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 20:55:34 by maolivei          #+#    #+#             */
-/*   Updated: 2022/06/26 01:55:02 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/06/26 04:10:29 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+# ifndef INT_MAX
+#  define INT_MAX 2147483647
+# endif
+# ifndef INT_MIN
+#  define INT_MIN -2147483648
+# endif
 # define STDERR 2
-# define INT_MAX 2147483647
-# define INT_MIN -2147483648
+# define OPERATIONS "sa sb ss pa pb ra rb rr rra rrb rrr"
 # include "../libft/libft.h"
 
 enum e_operation_id {
@@ -42,6 +47,7 @@ typedef struct s_stack {
 typedef struct s_stack_pair {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
+	t_stack	*operations;
 }	t_stack_pair;
 
 /*
@@ -65,6 +71,8 @@ void	ft_swap(t_stack_pair *stacks, int operation_id);
 void	ft_push(t_stack_pair *stacks, int operation_id);
 void	ft_rotate(t_stack_pair *stacks, int operation_id);
 void	ft_reverse_rotate(t_stack_pair *stacks, int operation_id);
+void	ft_store_operation(t_stack_pair *stacks, int operation_id);
+void	ft_print_operations(t_stack_pair *stacks);
 
 /*
 	UTILS

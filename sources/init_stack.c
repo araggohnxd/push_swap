@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 01:53:44 by maolivei          #+#    #+#             */
-/*   Updated: 2022/06/26 01:55:43 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/06/26 02:39:06 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,7 @@ t_stack	*ft_init_stack(int argc, char **argv)
 		nbr = ft_atoll(argv[index]);
 		if (nbr > INT_MAX || nbr < INT_MIN || ft_is_in_stack(nbr, aux))
 			ft_error_and_exit(aux);
-		if (index == 1)
-			aux = ft_stack_new((int) nbr);
-		else
-			ft_stack_add_end(&aux, ft_stack_new((int) nbr));
+		ft_stack_add_end(&aux, ft_stack_new((int) nbr));
 	}
 	return (aux);
 }

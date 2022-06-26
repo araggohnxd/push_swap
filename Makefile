@@ -9,8 +9,8 @@ HEADER				= ${addprefix ${HEADER_PATH}/, ${HEADER_FILES}}
 
 SRC_FILES			= push_swap.c utils.c operations.c \
 					linked_list.c linked_list_utils.c sort_stacks.c \
-					lookup_table.c divide_stack.c sorting_utils.c \
-					init_stack.c
+					lookup_table.c split_stack.c sorting_utils.c \
+					init_stack.c print_operations.c
 SRC_PATH			= sources
 SRC					= ${addprefix ${SRC_PATH}/, ${SRC_FILES}}
 
