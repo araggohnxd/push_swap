@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 04:10:02 by maolivei          #+#    #+#             */
-/*   Updated: 2022/06/26 19:45:39 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/06/26 23:32:21 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@ void	ft_print_operations(t_stack_pair *stacks)
 
 	aux = stacks->operations;
 	operations = ft_split(OPERATIONS, ' ');
+	if (!operations)
+		ft_error_and_exit(stacks);
 	while (aux)
 	{
 		if (aux->value != 0)
-			ft_printf("%s\n", operations[aux->value]);
+			ft_printf("%s", operations[aux->value]);
 		aux = aux->next;
 	}
 	ft_free_matrix((void *) &operations);

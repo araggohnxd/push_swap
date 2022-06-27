@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 20:55:34 by maolivei          #+#    #+#             */
-/*   Updated: 2022/06/26 20:32:53 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/06/26 23:31:58 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #  define INT_MIN -2147483648
 # endif
 # define STDERR 2
-# define OPERATIONS "skip sa sb ss pa pb ra rb rr rra rrb rrr"
+# define OPERATIONS "skip sa\n sb\n ss\n pa\n pb\n ra\n rb\n rr\n rra\n rrb\n rrr\n"
 # include "../libft/libft.h"
 
 enum e_operation_id {
@@ -53,7 +53,7 @@ typedef struct s_stack_pair {
 /*
 	SORTING
 */
-t_stack	*ft_init_stack(int argc, char **argv);
+void	ft_init_stack(t_stack_pair *stacks, int argc, char **argv);
 void	ft_sort_tiny_stack(t_stack_pair *stacks);
 void	ft_sort_large_stack(t_stack_pair *stacks);
 void	ft_split_stack(t_stack_pair *stacks);
@@ -83,6 +83,7 @@ t_llong	ft_atoll(const char *nptr);
 int		ft_is_number_str(const char *str);
 int		ft_is_in_stack(long long number, t_stack *stack);
 int		ft_is_stack_ordered(t_stack *stack);
+void	ft_error_and_exit(t_stack_pair *stacks);
 
 /*
 	LINKED LIST
