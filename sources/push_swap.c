@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 13:13:31 by maolivei          #+#    #+#             */
-/*   Updated: 2022/06/26 20:32:25 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/06/26 23:15:25 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		exit(EXIT_SUCCESS);
-	stacks.stack_a = ft_init_stack(argc, argv);
+	stacks.stack_a = NULL;
 	stacks.stack_b = NULL;
 	stacks.operations = NULL;
+	ft_init_stack(&stacks, argc, argv);
 	if (!ft_is_stack_ordered(stacks.stack_a))
 	{
 		if (ft_stack_size(stacks.stack_a) > 25)
