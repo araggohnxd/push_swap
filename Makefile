@@ -15,10 +15,10 @@ SRC					= push_swap.c init_stack.c utils.c \
 					linked_list.c linked_list_utils.c \
 					print_operations.c operations.c
 
-SRC_BONUS			= checker_bonus.c init_stack_bonus.c utils_bonus.c \
-					linked_list_bonus.c linked_list_utils_bonus.c \
+SRC_BONUS			= checker_bonus.c init_stack.c utils.c \
+					linked_list.c linked_list_utils.c error.c \
 					exec_operations_bonus.c get_operations_bonus.c \
-					operations_bonus.c error_bonus.c
+					operations_bonus.c
 
 OBJ_PATH			= objects
 OBJ					= ${SRC:%.c=${OBJ_PATH}/%.o}
