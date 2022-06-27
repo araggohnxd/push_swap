@@ -54,5 +54,6 @@ dkms.conf
 push_swap
 checker_linux
 checker_Mac
+checker
 main.c
 .vscode/
