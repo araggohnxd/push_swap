@@ -11,14 +11,14 @@ HEADER				= ${addprefix ${HEADER_PATH}/, ${HEADER_FILES}}
 SRC_PATH			= sources sources_bonus
 SRC					= push_swap.c init_stack.c utils.c \
 					sort_large_stack.c sort_tiny_stack.c \
-					split_stack.c sorting_utils.c \
+					split_stack.c sorting_utils.c error.c \
 					linked_list.c linked_list_utils.c \
 					print_operations.c operations.c
 
 SRC_BONUS			= checker_bonus.c init_stack_bonus.c utils_bonus.c \
 					linked_list_bonus.c linked_list_utils_bonus.c \
 					exec_operations_bonus.c get_operations_bonus.c \
-					operations_bonus.c
+					operations_bonus.c error_bonus.c
 
 OBJ_PATH			= objects
 OBJ					= ${SRC:%.c=${OBJ_PATH}/%.o}
@@ -53,7 +53,7 @@ clean:
 					${MAKE} -C ${LIBFT_PATH} clean
 
 fclean:				clean
-					${REMOVE} ${NAME}
+					${REMOVE} ${NAME} ${NAME_BONUS}
 					${MAKE} -C ${LIBFT_PATH} fclean
 
 re:					fclean all
