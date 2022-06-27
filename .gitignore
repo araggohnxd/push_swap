@@ -57,3 +57,4 @@ checker_Mac
 checker
 main.c
 .vscode/
+tester.sh
