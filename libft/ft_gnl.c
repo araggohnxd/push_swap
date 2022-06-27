@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_next_line.c                                 :+:      :+:    :+:   */
+/*   ft_gnl.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 11:52:03 by maolivei          #+#    #+#             */
-/*   Updated: 2022/06/03 21:27:46 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/06/27 10:40:47 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,50 +73,43 @@ static char	*ft_realloc(char *str, size_t length)
 * @return A pointer to a string containing the full line,
 * or NULL if an error occurs.
 */
-static char	*ft_read(int fd, char **buffer, char *str)
+static char	*ft_read(int fd, char *buffer, char *str)
 {
 	size_t	i;
-	char	*buf;
 	int		read_ret;
 
-	buf = *buffer;
 	i = 0;
 	if (str)
 		i = ft_strlen(str);
 	read_ret = BUFFER_SIZE;
 	while (read_ret == BUFFER_SIZE)
 	{
-		read_ret = read(fd, buf, BUFFER_SIZE);
+		read_ret = read(fd, buffer, BUFFER_SIZE);
 		if (read_ret < 1)
 			break ;
-		buf[read_ret] = '\0';
+		buffer[read_ret] = '\0';
 		str = ft_realloc(str, i);
-		i = ft_newlinecpy(str, buf, i);
+		i = ft_newlinecpy(str, buffer, i);
 		if (read_ret < BUFFER_SIZE || str[i - 1] == '\n')
 			break ;
 	}
-	if (read_ret < 1 && !str)
-		ft_memfree((void *) buffer);
 	return (str);
 }
 
-char	*ft_get_next_line(int fd)
+char	*ft_gnl(int fd)
 {
-	static char	*buffer[MAX_FD_VALUE];
+	static char	buffer[BUFFER_SIZE + 1];
 	char		*str;
 
 	if (fd < 0 || fd >= MAX_FD_VALUE || BUFFER_SIZE < 1)
 		return (NULL);
 	str = NULL;
-	if (!buffer[fd])
-		buffer[fd] = (char *) ft_calloc((BUFFER_SIZE + 1), sizeof(char));
-	else if (ft_strchr(buffer[fd], '\n'))
+	if (ft_strchr(buffer, '\n'))
 	{
-		str = ft_handle_buffer(buffer[fd]);
+		str = ft_handle_buffer(buffer);
 		if (str)
 			if (ft_strchr(str, '\n'))
 				return (str);
 	}
-	str = ft_read(fd, &buffer[fd], str);
-	return (str);
+	return (ft_read(fd, buffer, str));
 }

@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 14:43:19 by maolivei          #+#    #+#             */
-/*   Updated: 2022/06/15 15:07:07 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/06/27 10:47:21 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,15 @@
 # include <stdarg.h>
 
 // Macros and enumerators
+# ifndef STDIN
+#  define STDIN STDIN_FILENO
+# endif
+# ifndef STDOUT
+#  define STDOUT STDOUT_FILENO
+# endif
+# ifndef STDERR
+#  define STDERR STDERR_FILENO
+# endif
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
@@ -578,7 +587,17 @@ GET_NEXT_LINE & FT_PRINTF
 * @return A pointer to a string containing the line read,
 * or NULL if EOF is reached or an error occurs.
 */
-char	*ft_get_next_line(int fd);
+char	*ft_gnl(int fd);
+
+/**
+* @brief Read and return a line from a given file descriptor.
+* Consecutive calls to this function will return the next line of the file
+* descriptor, until EOF. This version can handle multiple file descriptors.
+* @param fd The file descriptor to read from.
+* @return A pointer to a string containing the line read,
+* or NULL if EOF is reached or an error occurs.
+*/
+char	*ft_gnl_multifd(int fd);
 
 /**
 * @brief Print an output to the standard output stream (terminal),

@@ -10,7 +10,7 @@ SRCS =				ft_atoi.c ft_calloc.c ft_bzero.c ft_isalnum.c \
 					ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c \
 					ft_strmapi.c ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c \
 					ft_putendl_fd.c ft_putnbr_fd.c ft_newlinecpy.c \
-					ft_get_next_line.c ft_printf.c ft_itoa_base.c \
+					ft_gnl.c ft_gnl_multifd.c ft_printf.c ft_itoa_base.c \
 					ft_handler_character.c ft_handler_decimal.c \
 					ft_handler_percent.c ft_handler_hex_lower.c \
 					ft_handler_hex_upper.c ft_handler_pointer.c \
