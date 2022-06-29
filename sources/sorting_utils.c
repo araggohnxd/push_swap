@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 23:32:19 by maolivei          #+#    #+#             */
-/*   Updated: 2022/06/26 17:41:31 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/06/28 23:45:38 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,31 @@ t_stack	*ft_get_value_index(t_stack *stack, int value)
 		stack = stack->next;
 	}
 	return (NULL);
+}
+
+void	ft_put_at_top(t_stack_pair *stacks, t_stack **stack, char stack_id)
+{
+	t_stack	*aux;
+	size_t	index;
+	size_t	stack_size;
+	int		top;
+
+	aux = *stack;
+	top = (*stack)->top;
+	while (aux->value != top)
+		aux = aux->next;
+	stack_size = ft_stack_size(*stack);
+	index = stack_size - ft_stack_size(aux);
+	if (stack_size - index >= index && stack_id == 'A')
+		while ((*stack)->value != top)
+			ft_rotate(stacks, RA);
+	else if (stack_size - index < index && stack_id == 'A')
+		while ((*stack)->value != top)
+			ft_reverse_rotate(stacks, RRA);
+	else if (stack_size - index >= index && stack_id == 'B')
+		while ((*stack)->value != top)
+			ft_rotate(stacks, RB);
+	else if (stack_size - index < index && stack_id == 'B')
+		while ((*stack)->value != top)
+			ft_reverse_rotate(stacks, RRB);
 }

@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 20:55:34 by maolivei          #+#    #+#             */
-/*   Updated: 2022/06/27 10:51:07 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/06/28 23:45:50 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int		ft_get_smallest(t_stack *stack);
 int		ft_get_biggest(t_stack *stack);
 t_stack	*ft_get_index(t_stack *stack, size_t index);
 t_stack	*ft_get_value_index(t_stack *stack, int value);
+void	ft_put_at_top(t_stack_pair *stacks, t_stack **stack, char stack_id);
 
 /*
 	OPERATIONS

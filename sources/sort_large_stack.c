@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_stacks.c                                      :+:      :+:    :+:   */
+/*   sort_large_stack.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 15:57:41 by maolivei          #+#    #+#             */
-/*   Updated: 2022/06/26 20:32:45 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/06/28 23:49:32 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static size_t	ft_get_place(t_stack *stack, size_t stack_size, int n)
+static size_t	ft_get_place(t_stack *stack, int n)
 {
 	size_t	i;
 
 	i = 0;
 	if (stack->value > n && ft_stack_last(stack)->value < n)
 		return (0);
-	while (!(stack->value < n && stack->next->value > n)
-		&& i < (stack_size - 2))
+	while (!(stack->value < n && stack->next->value > n))
 	{
 		stack = stack->next;
 		i++;
@@ -37,35 +36,7 @@ static size_t	ft_getmoves(t_stack *from, t_stack *to)
 	index = size - ft_stack_size(to) + 1;
 	if (index <= size / 2)
 		return (index - 1);
-	else
-		return (size - index);
-}
-
-static void	ft_put_at_top(t_stack_pair *stacks, t_stack **stack, char stack_id)
-{
-	t_stack	*aux;
-	size_t	index;
-	size_t	stack_size;
-	int		top;
-
-	aux = *stack;
-	top = (*stack)->top;
-	while (aux->value != top)
-		aux = aux->next;
-	stack_size = ft_stack_size(*stack);
-	index = stack_size - ft_stack_size(aux);
-	if (stack_size - index >= index && stack_id == 'A')
-		while ((*stack)->value != top)
-			ft_rotate(stacks, RA);
-	else if (stack_size - index < index && stack_id == 'A')
-		while ((*stack)->value != top)
-			ft_reverse_rotate(stacks, RRA);
-	else if (stack_size - index >= index && stack_id == 'B')
-		while ((*stack)->value != top)
-			ft_rotate(stacks, RB);
-	else if (stack_size - index < index && stack_id == 'B')
-		while ((*stack)->value != top)
-			ft_reverse_rotate(stacks, RRB);
+	return (size - index);
 }
 
 static void	ft_analyze_combinations(
@@ -82,7 +53,7 @@ static void	ft_analyze_combinations(
 	b_aux = *stack_b;
 	while (b_index++ < b_size)
 	{
-		a_index = ft_get_place(*stack_a, ft_stack_size(*stack_a), b_aux->value);
+		a_index = ft_get_place(*stack_a, b_aux->value);
 		a_aux = ft_get_index(*stack_a, a_index);
 		if (ft_getmoves(*stack_a, a_aux) + ft_getmoves(*stack_b, b_aux) < moves)
 		{
