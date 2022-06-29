@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 23:58:49 by maolivei          #+#    #+#             */
-/*   Updated: 2022/06/27 10:50:47 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/06/29 18:37:56 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,11 @@ static void	ft_parse_operation(char *operation, t_stack_pair *stacks)
 		++index;
 	}
 	if (!ops[index])
+	{
+		free(operation);
+		ft_free_matrix((void *) &ops);
 		ft_error_and_exit(stacks);
+	}
 	ft_free_matrix((void *) &ops);
 }
 
