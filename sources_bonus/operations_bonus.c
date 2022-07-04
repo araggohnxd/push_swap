@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:34:31 by maolivei          #+#    #+#             */
-/*   Updated: 2022/06/26 23:40:57 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/07/04 20:39:04 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	ft_push(t_stack_pair *stacks, int operation_id)
 	t_stack	**src;
 	t_stack	*pushed_node;
 
+	dst = NULL;
+	src = NULL;
 	if (operation_id == PA)
 	{
 		dst = &stacks->stack_b;
