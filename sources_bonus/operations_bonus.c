@@ -6,7 +6,7 @@
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:34:31 by maolivei          #+#    #+#             */
-/*   Updated: 2022/07/04 20:39:04 by coder            ###   ########.fr       */
+/*   Updated: 2022/07/11 15:34:17 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_swap(t_stack_pair *stacks, int operation_id)
 		dst = stacks->stack_a;
 	else if (operation_id == SB)
 		dst = stacks->stack_b;
-	if (!dst)
+	if (!dst || !dst->next)
 		return ;
 	src = dst->next;
 	aux = dst->value;
