@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 04:10:02 by maolivei          #+#    #+#             */
-/*   Updated: 2022/06/27 12:48:16 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/07/13 14:20:22 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ void	ft_store_operation(t_stack_pair *stacks, int operation_id)
 		else if ((operation_id == RRA && last->value == RRB)
 			|| (operation_id == RRB && last->value == RRA))
 			last->value = RRR;
+		else if ((operation_id == PB && last->value == PA)
+			|| (operation_id == PA && last->value == PB))
+			last->value = 0;
 		else
 			ft_stack_add_end(&stacks->operations, ft_stack_new(operation_id));
 	}

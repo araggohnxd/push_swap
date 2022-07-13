@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 17:22:26 by maolivei          #+#    #+#             */
-/*   Updated: 2022/06/28 23:52:40 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/07/13 14:18:33 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void	ft_sort_tiny_stack(t_stack_pair *stacks)
 {
 	int	a_smallest;
 
-	while (ft_stack_size(stacks->stack_a) > 3)
+	while (!ft_is_stack_ordered(stacks->stack_a)
+		&& ft_stack_size(stacks->stack_a) > 3)
 	{
 		a_smallest = ft_get_smallest(stacks->stack_a);
 		stacks->stack_a->top = a_smallest;
